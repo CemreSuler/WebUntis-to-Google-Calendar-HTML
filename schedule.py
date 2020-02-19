@@ -20,7 +20,7 @@ class WrongPasswordError(Exception):
     def __str__(self):
         return repr(self.value)
 
-def addToCalendar(school_input, server_input, untisid_input, username_input, password_input):
+def addToCalendar(school_input, server_input, untisid_input, username_input, password_input, calid_input):
     from google_cal import add_event, delete_events
     
     try:
@@ -29,16 +29,18 @@ def addToCalendar(school_input, server_input, untisid_input, username_input, pas
             password=password_input,
             server=server_input,
             school=school_input,
-            useragent='Chrome'
+            useragent='Mozilla/5.0'
         ).login() as s:
             LESSON_REQ = s.timetable(student=untisid_input, start=TODAY, end=END)
-            delete_events()
+            calendarId = calid_input
+            #delete_events()
             for lesson in LESSON_REQ:
                 if lesson.code != 'cancelled':
+                    
                     lesson.rooms = str(lesson.rooms).replace("[", "")
                     lesson.rooms = str(lesson.rooms).replace("]", "")
                     lesson.subjects = str(lesson.subjects).replace("[", "")
                     lesson.subjects = str(lesson.subjects).replace("]", "")
-                    add_event(lesson.start, lesson.end, lesson.subjects, lesson.rooms)
+                    add_event(lesson.start, lesson.end, lesson.subjects, lesson.rooms, calendarId)
     except webuntis.errors.BadCredentialsError:
         return("Ey da gaatnie goe he!")

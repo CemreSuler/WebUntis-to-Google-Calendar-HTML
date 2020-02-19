@@ -14,10 +14,7 @@ current = os.path.dirname(sys.argv[0])
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
-def start_google_cal(calid_input):
-    calendarId = calid_input
-
-def add_event(start, end, name, location):
+def add_event(start, end, name, location, calendarId):
     creds = None
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
