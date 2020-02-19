@@ -12,10 +12,10 @@ from google.auth.transport.requests import Request
 
 current = os.path.dirname(sys.argv[0])
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-with open(current + "config.json") as f:
-    data = json.load(f)
-    global calendarId
-    calendarId = data['calendar_id']
+
+
+def start_google_cal(calid_input):
+    calendarId = calid_input
 
 def add_event(start, end, name, location):
     creds = None
