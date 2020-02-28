@@ -18,7 +18,8 @@ def my_form_post():
     password_input = request.form['password']
     calid_input = request.form['calid']
     schedule.addToCalendar(school_input, server_input, untisid_input, username_input, password_input, calid_input)
-    return("Eyyyy hij is beziggg even rustaagg")
+    return render_template("index.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

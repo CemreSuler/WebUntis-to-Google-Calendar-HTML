@@ -52,7 +52,7 @@ def convert_date(event):
 
 
 thread_list = []
-def delete_events():
+def delete_events(calendarId):
     creds = None
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
@@ -75,14 +75,11 @@ def delete_events():
         print('No upcoming events found.')
         return
     for event in events:
-        time.sleep(0.2)
-        thread = threading.Thread(target=delete_event, args=(event['id'],))
-        thread_list.append(thread)
-        thread.start()
+        delete_event(event['id'],calendarId)
     time.sleep(10)
     print("Finished")
         
-def delete_event(eventid):
+def delete_event(eventid, calendarId):
     creds = None
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:

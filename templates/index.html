@@ -8,12 +8,13 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/static/main.css">
+    <script src="/static/main.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="form">
         <fieldset>
-            <form method="POST">
+            <form method="POST" onsubmit="return hideandshow()">
               <div class="autocomplete">
                 <input class="ghost-input" id="myInput" type="text" name="school" placeholder="School">
               </div>
@@ -25,10 +26,17 @@
               <input type="submit" class="ghost-button">
             </form>
           </fieldset>
+    </div>
+    <div class="loading" id="loading">
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+    </div>
    
 </body>
 
-<script src="/static/main.js"></script>
+
 <script>
     autocomplete(document.getElementById("myInput"), scholen);
     </script>
